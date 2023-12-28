@@ -3,6 +3,7 @@ package org.eturn;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 public class Main extends JFrame {
 
@@ -15,11 +16,7 @@ public class Main extends JFrame {
         c.setLayout(new BorderLayout()); // выбираем компоновщик
         // добавляем какие-нибудь дочерние элементы
         //MyComponent child = new MyComponent();
-        MyPanel child= new MyPanel();
-        MainPage main = new MainPage();
-        CreateQueue create = new CreateQueue();
         Login log = new Login();
-        EditeQueue edit = new EditeQueue();
         c.add(log);
         // -------------------------------------------
         // настройка окна

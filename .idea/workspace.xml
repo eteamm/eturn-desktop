@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14309a34-23e2-4f05-a22f-475ed02588a1" name="Changes" comment="+ кнопка назад на реадактировании">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/eturn/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/eturn/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/eturn/QueueScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/eturn/QueueScreen.java" afterDir="false" />
+    <list default="true" id="14309a34-23e2-4f05-a22f-475ed02588a1" name="Changes" comment="Сделал файлы">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/eturn/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/eturn/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +68,7 @@
       <updated>1703788814896</updated>
       <workItem from="1703788816466" duration="9000" />
       <workItem from="1703789741760" duration="81000" />
-      <workItem from="1703789841887" duration="7810000" />
+      <workItem from="1703789841887" duration="8157000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -96,7 +94,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703796392851</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Сделал файлы">
+      <option name="closed" value="true" />
+      <created>1703800873956</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703800873956</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,6 +112,7 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="login записывает и читает из файла" />
     <MESSAGE value="+ кнопка назад на реадактировании" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ кнопка назад на реадактировании" />
+    <MESSAGE value="Сделал файлы" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделал файлы" />
   </component>
 </project>
