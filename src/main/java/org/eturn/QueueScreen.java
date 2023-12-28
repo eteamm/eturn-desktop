@@ -29,7 +29,6 @@ public class QueueScreen extends JFrame
         }
         queueMembersList = new JList<>(queueMembersModel);
         JScrollPane scrollPane = new JScrollPane(queueMembersList);
-        editButton = new JButton("Edit");
         deleteButton = new JButton("Delete");
 
         JPanel buttonPanel = new JPanel();
