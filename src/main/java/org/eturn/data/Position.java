@@ -6,7 +6,13 @@ public class Position {
     private String group;
     private boolean isStarted;
     private int number;
-
+    public Position(long id, String name, String group, boolean isStarted, int number) {
+        this.id = id;
+        this.name = name;
+        this.group = group;
+        this.isStarted = isStarted;
+        this.number = number;
+    }
     public Long getId() {
         return id;
     }
