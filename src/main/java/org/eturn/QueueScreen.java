@@ -2,6 +2,9 @@ package org.eturn;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.eturn.data.Position;
 public class QueueScreen extends JPanel 
@@ -29,6 +32,29 @@ public class QueueScreen extends JPanel
             elementPanel.add(label);
             elementPanel.add(deleteButton);
             queuePanel.add(elementPanel);
+            String userID = "";
+            String turnID = "";
+            try
+            {
+                FileReader fr = new FileReader("turnID.txt");
+                BufferedReader reader = new BufferedReader(fr);
+                turnID = reader.readLine();
+            }
+            catch (IOException e)
+            {
+                System.err.println(e);
+            }
+            try
+            {
+                FileReader fr = new FileReader("userID.txt");
+                BufferedReader reader = new BufferedReader(fr);
+                userID = reader.readLine();
+            }
+            catch (IOException e)
+            {
+                System.err.println(e);
+            }
+            curID = Long.parseLong(userID);
             if (curID == position.getUserId()) // тут нужно сделать принятие юзер айди из файла, 
             //чтобы удалять конкретную позицию(т.е. человек удаляет свою позицию - делаем не для админа, а для пользователя)
             {

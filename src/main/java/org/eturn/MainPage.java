@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eturn.data.Turn;
 import org.eturn.data.User;
+import java.io.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,6 +97,16 @@ public class MainPage extends JPanel {
             label4.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    File file = new File("turnID.txt");
+                    try (Writer writer = new BufferedWriter(new FileWriter(file)))
+                    {
+                        String str = String.valueOf(i.getId());
+                        writer.write(str);
+                    }
+                    catch (IOException err)
+                    {
+                        err.printStackTrace();
+                    }
                     jp.removeAll();
                     QueueScreen q = new QueueScreen();
                     jp.add(q);
