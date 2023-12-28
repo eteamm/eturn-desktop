@@ -2,78 +2,44 @@ package org.eturn;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.*;
 
-public class QueueScreen extends JFrame 
-{
-    private JLabel queueNameLabel;
-    private JLabel queueInfoLabel;
-    private JList<String> queueMembersList;
-    private DefaultListModel<String> queueMembersModel;
-    private JButton editButton;
-    private JButton deleteButton;
-
-    public QueueScreen(String queueName, int queueSize, ArrayList<String> queueMembers) 
+public class QueueScreen {
+    public static void main(String[] args) 
     {
-        setTitle("Queue Screen");
-        setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        queueNameLabel = new JLabel("Queue Name: " + queueName);
-        queueInfoLabel = new JLabel("Queue Size: " + queueSize);
-        queueMembersModel = new DefaultListModel<>();
-        for (String member : queueMembers) {
-            queueMembersModel.addElement(member);
-        }
-        queueMembersList = new JList<>(queueMembersModel);
-        JScrollPane scrollPane = new JScrollPane(queueMembersList);
-        deleteButton = new JButton("Delete");
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(deleteButton);
-
-        setLayout(new BorderLayout());
-        add(queueNameLabel, BorderLayout.NORTH);
-        add(queueInfoLabel, BorderLayout.CENTER);
-        add(scrollPane, BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.SOUTH);
-
-        editButton.addActionListener(new ActionListener() 
+        JFrame frame = new JFrame("Queue Screen");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel queuePanel = new JPanel(new GridLayout(0, 1));
+        
+        JLabel queueNameLabel = new JLabel("Queue Name: MyQueue");
+        panel.add(queueNameLabel, BorderLayout.NORTH);
+        panel.add(queuePanel, BorderLayout.CENTER);
+        
+        for (int i = 1; i <= 10; i++) 
         {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String selectedMember = queueMembersList.getSelectedValue();
-                System.out.println("Editing member: " + selectedMember);
-            }
-        });
-
-        deleteButton.addActionListener(new ActionListener() 
-        {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedIndex = queueMembersList.getSelectedIndex();
-                if (selectedIndex != -1) {
-                    queueMembersModel.remove(selectedIndex);
+            JPanel elementPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+            JButton deleteButton = new JButton("Delete");
+            JLabel label = new JLabel("Element " + i);
+            elementPanel.add(label);
+            elementPanel.add(deleteButton);
+            queuePanel.add(elementPanel);
+            
+            deleteButton.addActionListener(new ActionListener() 
+            {
+                public void actionPerformed(ActionEvent e) 
+                {
+                    queuePanel.remove(elementPanel);
+                    frame.revalidate();
+                    frame.repaint();
                 }
-            }
-        });
-
-        setVisible(true);
-    }
-
-    public static void main(String args[]) 
-    {
-        String queueName = "Example Queue";
-        int queueSize = 5;
-        ArrayList<String> queueMembers = new ArrayList<>();
-        queueMembers.add("Member 1");
-        queueMembers.add("Member 2");
-        queueMembers.add("Member 3");
-        queueMembers.add("Member 4");
-        queueMembers.add("Member 5");
-
-        SwingUtilities.invokeLater(() -> new QueueScreen(queueName, queueSize, queueMembers));
+            });
+        }
+        
+        frame.add(panel);
+        frame.pack();
+        frame.setSize(300, 600);
+        frame.setVisible(true);
     }
 }
