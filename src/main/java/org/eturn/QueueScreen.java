@@ -2,16 +2,10 @@ package org.eturn;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import org.eturn.data.Position;
 public class QueueScreen extends JPanel 
 {
-    private Long id;
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
     private static final long serialVersionUID = 2L;
     public QueueScreen()
     {
@@ -21,24 +15,33 @@ public class QueueScreen extends JPanel
         JLabel queueNameLabel = new JLabel("Queue Name: MyQueue");
         panel.add(queueNameLabel, BorderLayout.NORTH);
         panel.add(queuePanel, BorderLayout.CENTER);
-        for (int i = 1; i <= 10; i++) 
+        ArrayList<Position> positions = new ArrayList<Position>();
+        Position p1 = new Position(1L, "Ваня", "2391", false, 1, 12L);
+        Position p2 = new Position(2L, "Юра", "2391", false, 2, 13L);
+        positions.add(p1);
+        positions.add(p2);
+        Long curID = 12L; // наш принимаемый айди из файла
+        for (Position position : positions) 
         {
             JPanel elementPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
             JButton deleteButton = new JButton("Delete");
-            JLabel label = new JLabel("Element " + i);
+            JLabel label = new JLabel(position.getName());
             elementPanel.add(label);
             elementPanel.add(deleteButton);
             queuePanel.add(elementPanel);
-            
-            deleteButton.addActionListener(new ActionListener() 
+            if (curID == position.getUserId()) // тут нужно сделать принятие юзер айди из файла, 
+            //чтобы удалять конкретную позицию(т.е. человек удаляет свою позицию - делаем не для админа, а для пользователя)
             {
-                public void actionPerformed(ActionEvent e) 
+                deleteButton.addActionListener(new ActionListener() 
                 {
-                    queuePanel.remove(elementPanel);
-                    revalidate();
-                    repaint();
-                }
-            });
+                    public void actionPerformed(ActionEvent e) 
+                    {
+                        queuePanel.remove(elementPanel);
+                        revalidate();
+                        repaint();
+                    }
+                });
+            }
         }
         JButton jb = new JButton("назад");
         add(jb);
