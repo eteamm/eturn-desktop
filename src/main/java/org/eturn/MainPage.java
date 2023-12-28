@@ -1,12 +1,24 @@
 package org.eturn;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eturn.data.Turn;
+import org.eturn.data.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class MainPage extends JPanel {
     private static final long serialVersionUID = 2L;
@@ -22,7 +34,7 @@ public class MainPage extends JPanel {
     } // ищет текущий фрэйм, который работает сейсчас
 
 
-    public MainPage() {
+    public MainPage()  {
         setLayout(new BorderLayout());
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
@@ -31,19 +43,36 @@ public class MainPage extends JPanel {
         JButton exitButton = new JButton("Выйти");
         jp.add(exitButton);
 
-        ArrayList<String> name_list = new ArrayList<>(); // Массив, где лежит ФИО, статус и группа
-        name_list.add("Самоваров Иван");
-        name_list.add("Студент"); // Пока добавляю это вручную
-        name_list.add("2391");
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://90.156.229.190:8089/user/1"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .build();
+        CompletableFuture<HttpResponse<String>> responseGlobal = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+        String body=null;
+        try {
+            body=responseGlobal.thenApply(HttpResponse::body).get(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (TimeoutException e) {
+            throw new RuntimeException(e);
+        }
+
+        ObjectMapper objectMapper=new ObjectMapper();
+        User user = null;
+        try {
+            user = objectMapper.readValue(body, User.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        String name = user.getName();
         JLabel label1 = new JLabel();
 
-        String text = ""; // Запихиваю данные из массива в одну переменную
-        for(int i = 0; i < name_list.size(); i++){
-            text = text + name_list.get(i);
-            if(i < name_list.size() - 2){
-                text = text + ", ";
-            }
-        }
+        String text = user.getName()+" "+user.getGroup(); // Запихиваю данные из массива в одну переменную
+
 
         JLabel label2 = new JLabel("ПОЛЬЗОВАТЕЛЬ:");
         label1.setText(text); // Вывожу эту переменную
