@@ -6,7 +6,15 @@ public class Position {
     private String group;
     private boolean isStarted;
     private int number;
-
+    private Long userid;
+    public Position(Long id, String name, String group, boolean isStarted, int number, Long userid) {
+        this.id = id;
+        this.name = name;
+        this.group = group;
+        this.isStarted = isStarted;
+        this.number = number;
+        this.userid = userid;
+    }
     public Long getId() {
         return id;
     }
@@ -45,5 +53,12 @@ public class Position {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+    public Long getUserId() {
+        return userid;
+    }
+
+    public void UsersetId(Long userid) {
+        this.userid = userid;
     }
 }
