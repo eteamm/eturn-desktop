@@ -8,6 +8,9 @@ import org.eturn.data.User;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -35,6 +38,18 @@ public class MainPage extends JPanel {
 
 
     public MainPage()  {
+        String UserID = "";
+        try
+        {
+            FileReader fr = new FileReader("UserID.txt");
+            BufferedReader reader = new BufferedReader(fr);
+            UserID = reader.readLine();
+        }
+        catch (IOException e)
+        {
+            System.err.println(e);
+        }
+        System.out.println(UserID);
         setLayout(new BorderLayout());
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
@@ -45,7 +60,7 @@ public class MainPage extends JPanel {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://90.156.229.190:8089/user/1"))
+                .uri(URI.create("http://90.156.229.190:8089/user/"+UserID))
                 .timeout(Duration.ofMinutes(2))
                 .header("Content-Type", "application/json")
                 .build();

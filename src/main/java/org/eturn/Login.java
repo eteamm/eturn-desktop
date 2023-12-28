@@ -26,23 +26,6 @@ public class Login extends JPanel{
         JTextArea textMainTop2 = new JTextArea("Логин:");
         JTextField addLog = new JTextField();
 
-        Action actionLog = new AbstractAction()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                File file = new File("Login.txt");
-                try (Writer writer = new BufferedWriter(new FileWriter(file)))
-                {
-                    writer.write(addLog.getText());
-                }
-                catch (IOException err)
-                {
-                    err.printStackTrace();
-                }
-            }
-        };
-        addLog.addActionListener(actionLog);
 
         String login = "";
         try
@@ -60,36 +43,6 @@ public class Login extends JPanel{
         JTextArea textDescription = new JTextArea("Пароль:");
         JTextField addPass = new JTextField();
 
-        Action actionPass = new AbstractAction()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                File file = new File("Pass.txt");
-                try (Writer writer = new BufferedWriter(new FileWriter(file)))
-                {
-                    writer.write(addPass.getText());
-                }
-                catch (IOException err)
-                {
-                    err.printStackTrace();
-                }
-            }
-        };
-        addPass.addActionListener(actionPass);
-
-        String password = "";
-        try
-        {
-            FileReader fr = new FileReader("Pass.txt");
-            BufferedReader reader = new BufferedReader(fr);
-            password = reader.readLine();
-        }
-        catch (IOException e)
-        {
-            System.err.println(e);
-        }
-        System.out.println(password);
 
         JButton loginButton = new JButton("войти");
         jp.add(textMainTop1);
@@ -153,11 +106,21 @@ public class Login extends JPanel{
                 System.out.println(response);
                 String str = response.toString();
                 if (Long.parseLong(str)>0) {
+                    File file = new File("UserID.txt");
+                    try (Writer writer = new BufferedWriter(new FileWriter(file)))
+                    {
+                        writer.write(str);
+                    }
+                    catch (IOException err)
+                    {
+                        err.printStackTrace();
+                    }
                     MainPage main = new MainPage();
                     jp.removeAll();
                     jp.add(main);
                     jp.revalidate();
                     jp.repaint();
+
                 }
 
             }
