@@ -16,7 +16,9 @@ public class Turn {
         this.userId = userId;
         this.countUsers = countUsers;
     }
+    public Turn() {
 
+    }
     public long getId() {
         return id;
     }

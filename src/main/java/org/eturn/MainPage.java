@@ -1,6 +1,7 @@
 package org.eturn;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eturn.data.Turn;
 import org.eturn.data.User;
@@ -50,7 +51,32 @@ public class MainPage extends JPanel {
         {
             System.err.println(e);
         }
+
         System.out.println(UserID);
+        HttpClient client1 = HttpClient.newHttpClient();
+        HttpRequest request1 = HttpRequest.newBuilder()
+                .uri(URI.create("http://90.156.229.190:8089/turn?userId="+UserID+"&type=edu&access=participates"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .build();
+        CompletableFuture<HttpResponse<String>> responseGlobal1 = client1.sendAsync(request1, HttpResponse.BodyHandlers.ofString());
+        String body1=null;
+        try {
+            body1=responseGlobal1.thenApply(HttpResponse::body).get(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (TimeoutException e) {
+            throw new RuntimeException(e);
+        }
+        List<Turn> turns = null;
+        ObjectMapper objectMapper1=new ObjectMapper();
+        try {
+            turns = Arrays.asList(objectMapper1.readValue(body1, Turn[].class));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         setLayout(new BorderLayout());
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
@@ -104,7 +130,7 @@ public class MainPage extends JPanel {
         allQueue.add(turn);
         allQueue.add(turn2);
 
-        for (Turn i: allQueue) {
+        for (Turn i: turns) {
             text = "";
             text = "НАЗВАНИЕ: " + i.getName() + "    СОЗДАТЕЛЬ: " + i.getCreator() + "    ОПИСАНИЕ: " + i.getDescription() + "    КОЛИЧЕСТВО УЧАСТНИКОВ: " + i.getCountUsers() + " человек";
             JLabel label4 = new JLabel();
