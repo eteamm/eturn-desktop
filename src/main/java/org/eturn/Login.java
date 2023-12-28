@@ -1,8 +1,10 @@
 package org.eturn;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class Login extends JPanel{
     private static final long serialVersionUID = 2L;
@@ -19,10 +21,73 @@ public class Login extends JPanel{
         textMainTop1.setFont(MainFont1);
         JTextArea textMainTop2 = new JTextArea("Логин:");
         JTextField addLog = new JTextField();
+
+        Action actionLog = new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                File file = new File("Login.txt");
+                try (Writer writer = new BufferedWriter(new FileWriter(file)))
+                {
+                    writer.write(addLog.getText());
+                }
+                catch (IOException err)
+                {
+                    err.printStackTrace();
+                }
+            }
+        };
+        addLog.addActionListener(actionLog);
+
+        String login = "";
+        try
+        {
+            FileReader fr = new FileReader("Login.txt");
+            BufferedReader reader = new BufferedReader(fr);
+            login = reader.readLine();
+        }
+        catch (IOException e)
+        {
+            System.err.println(e);
+        }
+        System.out.println(login);
+
         JTextArea textDescription = new JTextArea("Пароль:");
         JTextField addPass = new JTextField();
-        JButton loginButton = new JButton("войти");
 
+        Action actionPass = new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                File file = new File("Pass.txt");
+                try (Writer writer = new BufferedWriter(new FileWriter(file)))
+                {
+                    writer.write(addPass.getText());
+                }
+                catch (IOException err)
+                {
+                    err.printStackTrace();
+                }
+            }
+        };
+        addPass.addActionListener(actionPass);
+
+        String password = "";
+        try
+        {
+            FileReader fr = new FileReader("Pass.txt");
+            BufferedReader reader = new BufferedReader(fr);
+            password = reader.readLine();
+        }
+        catch (IOException e)
+        {
+            System.err.println(e);
+        }
+        System.out.println(password);
+
+        JButton loginButton = new JButton("войти");
         jp.add(textMainTop1);
         jp.add(textMainTop2);
         jp.add(addLog);
@@ -31,6 +96,7 @@ public class Login extends JPanel{
         jp.add(loginButton);
         frame.getContentPane().add(BorderLayout.NORTH, jp);
         frame.getContentPane().add(BorderLayout.CENTER, jpButton);
+
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
