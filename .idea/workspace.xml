@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14309a34-23e2-4f05-a22f-475ed02588a1" name="Changes" comment="" />
+    <list default="true" id="14309a34-23e2-4f05-a22f-475ed02588a1" name="Changes" comment="HELL">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/eturn/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/eturn/Login.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +66,15 @@
       <workItem from="1703788816466" duration="9000" />
       <workItem from="1703789741760" duration="81000" />
     </task>
+    <task id="LOCAL-00001" summary="HELL">
+      <option name="closed" value="true" />
+      <created>1703795953938</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703795953938</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,6 +120,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hello" />
-    <option name="LAST_COMMIT_MESSAGE" value="hello" />
+    <MESSAGE value="HELL" />
+    <option name="LAST_COMMIT_MESSAGE" value="HELL" />
   </component>
 </project>
