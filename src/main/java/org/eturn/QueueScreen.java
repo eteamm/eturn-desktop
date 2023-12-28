@@ -4,12 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class QueueScreen {
-    public static void main(String[] args) 
+public class QueueScreen extends JPanel {
+    private static final long serialVersionUID = 2L;
+    public QueueScreen()
     {
-        JFrame frame = new JFrame("Queue Screen");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
         JPanel panel = new JPanel(new BorderLayout());
         JPanel queuePanel = new JPanel(new GridLayout(0, 1));
         
@@ -31,15 +29,26 @@ public class QueueScreen {
                 public void actionPerformed(ActionEvent e) 
                 {
                     queuePanel.remove(elementPanel);
-                    frame.revalidate();
-                    frame.repaint();
+                    revalidate();
+                    repaint();
                 }
             });
         }
-        
-        frame.add(panel);
-        frame.pack();
-        frame.setSize(300, 600);
-        frame.setVisible(true);
+        JButton jb = new JButton("назад");
+        add(jb);
+        jb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeAll();
+                MainPage main = new MainPage();
+                add(main);
+                revalidate();
+                repaint();
+            }
+        });
+
+        add(panel);
+        setSize(300, 600);
+        setVisible(true);
     }
 }

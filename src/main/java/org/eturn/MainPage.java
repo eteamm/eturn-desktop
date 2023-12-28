@@ -97,8 +97,8 @@ public class MainPage extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     jp.removeAll();
-                    EditeQueue edite = new EditeQueue();
-                    jp.add(edite);
+                    QueueScreen q = new QueueScreen();
+                    jp.add(q);
                     jp.revalidate();
                     jp.repaint();
                 }

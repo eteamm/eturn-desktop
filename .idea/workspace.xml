@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14309a34-23e2-4f05-a22f-475ed02588a1" name="Changes" comment="First commit">
+    <list default="true" id="14309a34-23e2-4f05-a22f-475ed02588a1" name="Changes" comment="login записывает и читает из файла">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/eturn/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/eturn/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/eturn/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/eturn/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/eturn/QueueScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/eturn/QueueScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +70,7 @@
       <updated>1703788814896</updated>
       <workItem from="1703788816466" duration="9000" />
       <workItem from="1703789741760" duration="81000" />
-      <workItem from="1703789841887" duration="4590000" />
+      <workItem from="1703789841887" duration="5966000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -79,7 +80,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703790240348</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="login записывает и читает из файла">
+      <option name="closed" value="true" />
+      <created>1703794602244</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703794602244</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,6 +96,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="login записывает и читает из файла" />
+    <option name="LAST_COMMIT_MESSAGE" value="login записывает и читает из файла" />
   </component>
 </project>
